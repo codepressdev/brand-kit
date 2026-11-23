@@ -32,6 +32,10 @@ npm run lint
 npm run format:check
 ```
 
+Use npm 11 or later (`npm install -g npm@11`): the npm 10 that ships with
+Node 22 fails `npm install` here with "Cannot read properties of null
+(reading 'edgesOut')". CI does the same on Node 20 and 22.
+
 pnpm works too (`pnpm install`, `pnpm test`); `pnpm-workspace.yaml` allows
 esbuild's install script.
 

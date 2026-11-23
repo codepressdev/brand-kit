@@ -29,6 +29,14 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      # The npm 10 that ships with Node 22 crashes resolving vitest's optional
+      # peers with no lockfile ("Cannot read properties of null (reading
+      # 'edgesOut')"), so both legs use npm 11, which supports Node 20 and 22.
+      # Pinning npm rather than committing a lockfile keeps this green when
+      # the monorepo changes the package's dependencies.
+      - name: Use npm 11
+        run: npm install -g npm@11 --no-audit --no-fund
+
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
