@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unpkg.com/@codepress/brand-kit/identity.schema.json",
+  "title": "Brand identity",
+  "description": "A firm's brand identity, as the brand-design skill generates it. Every field is optional: a missing block keeps the site's current look. Accepts the identity object itself; in brand.json it is the value of the `identity` key.",
+  "type": "object",
+  "properties": {
+    "direction": {
+      "type": "string",
+      "description": "The art direction in a sentence or two."
+    },
+    "motif": {
+      "type": "string",
+      "description": "The one visual idea the pattern and icons come from."
+    },
+    "palette": {
+      "type": "object",
+      "description": "CSS colours: hex or a colour function, oklch() preferred. Older `colors` settings win over these.",
+      "properties": {
+        "ink": { "type": "string" },
+        "surface": { "type": "string" },
+        "primary": { "type": "string" },
+        "accent": { "type": "string" },
+        "signal": { "type": "string" }
+      }
+    },
+    "type": {
+      "type": "object",
+      "properties": {
+        "display": { "type": "string", "description": "Display font family." },
+        "body": { "type": "string", "description": "Body font family." }
+      }
+    },
+    "icon": {
+      "type": "object",
+      "properties": {
+        "stroke": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 8,
+          "description": "Stroke width in a 24px grid."
+        },
+        "corner": { "enum": ["round", "square", "chamfer"] },
+        "fill": { "enum": ["none", "duotone", "solid"] }
+      }
+    },
+    "pattern": {
+      "type": "object",
+      "properties": {
+        "tile": {
+          "type": "string",
+          "description": "The firm's SVG tile, relative to the site's base, e.g. brand/pattern.svg."
+        },
+        "scale": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Multiplies the 48px base tile size."
+        },
+        "opacity": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "texture": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "grain",
+          "pattern",
+          "frames",
+          "linework",
+          "blur-fields",
+          "depth"
+        ]
+      }
+    },
+    "signature_interaction": {
+      "type": "string",
+      "description": "The one memorable moment."
+    },
+    "fingerprint": {
+      "type": "string",
+      "description": "direction / palette / type / motif"
+    }
+  }
+}

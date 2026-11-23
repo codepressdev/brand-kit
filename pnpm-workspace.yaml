@@ -1,0 +1,5 @@
+# pnpm settings for this repository on its own. esbuild's install script
+# fetches its platform binary; pnpm skips dependency build scripts unless they
+# are allowed here, and `pnpm install` fails on an unapproved one.
+allowBuilds:
+  esbuild: true
